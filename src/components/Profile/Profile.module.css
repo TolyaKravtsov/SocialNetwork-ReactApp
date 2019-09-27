@@ -5,7 +5,7 @@
     align-content: center;
 }
 
-.item {
-    color: red;
-
+img {
+    height: 300px;
+    width: 1000px;
 }
