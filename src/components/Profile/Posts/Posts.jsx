@@ -1,11 +1,13 @@
 import React from 'react';
 import posts from './Posts.module.css'
 
-const Posts = () => {
+const Posts = (props) => {
     return (
 
-        <div>
-            <div className={posts.color}>new post</div>
+        <div className={posts.color}>
+            <div>{props.name}</div>
+            <div>{props.age}</div>
+
         </div>
 
 

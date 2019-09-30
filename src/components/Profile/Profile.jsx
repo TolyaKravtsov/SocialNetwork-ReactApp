@@ -2,7 +2,7 @@ import React from 'react';
 import profile from "./Profile.module.css"
 import Posts from "./Posts/Posts";
 
-const Profile = () => {
+const Profile = (props) => {
     return (
 
         <div className={profile.content}>Main content
@@ -10,9 +10,13 @@ const Profile = () => {
 
             <div><img src="https://clck.ru/JEiYu" alt=""/></div>
             <div>ava+description</div>
-            <Posts/>
-            <Posts/>
-            <Posts/>
+            <Posts name='first post'/>
+            <Posts age='30'/>
+
+
+            <Posts name='second post'/>
+            <Posts age='50'/>
+
 
         </div>
     );
