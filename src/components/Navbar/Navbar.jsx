@@ -5,8 +5,8 @@ import navbar from "./Navbar.module.css"
 const Navbar = () => {
     return (
         <nav className={navbar.nav}>
-            <div><a href="">Profile</a></div>
-            <div><a href="">Message</a></div>
+            <div><a href="/profile">Profile</a></div>
+            <div><a href="/Dialogs">Message</a></div>
             <div><a href="">News</a></div>
             <div><a href="">Music</a></div>
             <div><a href="">Settings</a></div>
