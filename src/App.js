@@ -10,21 +10,20 @@ import {BrowserRouter} from "react-router-dom";
 const App = () => {
     return (
         <BrowserRouter>
-        <div className='app-wrapper'>
-            <Header/>
-            <Navbar/>
-            <div class='app-wrapper-content'>
-
-                <Route path="/Dialogs" component={Dialogs} />
-                <Route path="/Profile" component={Profile} />
+            <div className='app-wrapper'>
+                <Header/>
+                <Navbar/>
+                <div className='app-wrapper-content'>
+                    <Route path="/Dialogs" component={Dialogs}/> {/* Route wait Url /Dialogs,and turn component Dialogs*/}
+                    <Route path="/Profile" component={Profile}/>
+                </div>
             </div>
-        </div>
         </BrowserRouter>
 
 
     );
 
-}
+};
 
 
 export default App;
