@@ -1,19 +1,15 @@
 import React from 'react';
-import profile from "./Profile.module.css"
+import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import Posts from "./Posts/Posts";
+
 
 const Profile = (props) => {
     return (
 
-        <div className={profile.content}>Main content
-
-
-            <div><img src="https://clck.ru/JEiYu" alt=""/></div>
-            <div>ava+description</div>
-            <Posts name='first post' age={30}/>
-            <Posts name='second post' age={30}/>
-
-
+        <div>Main content
+            <ProfileInfo/>
+            <Posts message='first post'/>
+            <Posts name='second post'/>
         </div>
     );
 };
