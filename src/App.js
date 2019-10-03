@@ -14,7 +14,8 @@ const App = () => {
                 <Header/>
                 <Navbar/>
                 <div className='app-wrapper-content'>
-                    <Route exact path="/Dialogs" component={Dialogs}/> {/* Route wait Url /Dialogs,and turn component Dialogs*/}
+                    <Route exact path="/Dialogs"
+                           component={Dialogs}/> {/* Route wait Url /Dialogs,and turn component Dialogs*/}
                     <Route exact path="/Profile" component={Profile}/>
                 </div>
             </div>

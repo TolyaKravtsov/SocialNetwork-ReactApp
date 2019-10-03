@@ -3,11 +3,11 @@ import posts from './Posts.module.css'
 
 const Posts = (props) => {
     return (
+
         <div className={posts.postBLock}>
             {props.message}
-
-
         </div>
+
     );
 };
 
