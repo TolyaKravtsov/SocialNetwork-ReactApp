@@ -4,28 +4,3 @@
     grid-template-columns: 2fr 10fr;
 
 }
-
-.dialogsItem {
-
-    padding: 10px;
-}
-
-.dialogsItem .active {
-    color: blue;
-
-}
-
-.dialog {
-
-
-}
-
-.messages {
-    padding: 10px;
-
-}
-
-.message {
-
-
-}
