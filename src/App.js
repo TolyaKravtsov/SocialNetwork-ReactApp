@@ -7,16 +7,15 @@ import Dialogs from "./components/Dialogs/Dialogs";
 import Route from "react-router-dom/es/Route";
 import {BrowserRouter as Router} from "react-router-dom";
 
-const App = () => {
+const App = (props) => {
     return (
         <Router>
             <div className='app-wrapper'>
                 <Header/>
                 <Navbar/>
                 <div className='app-wrapper-content'>
-                    <Route exact path="/dialogs"
-                           component={Dialogs}/> {/* Route wait Url /Dialogs,and turn component Dialogs*/}
-                    <Route exact path="/profile" component={Profile}/>
+                    <Route exact path="/dialogs" render={() => <Dialogs dialogsData={props.dialogsData} messageData={props.messageData}/>}/>
+                    <Route exact path="/profile" render={() => <Profile postData={props.postData}/>}/>
                 </div>
             </div>
         </Router>
