@@ -3,7 +3,8 @@ let state = {
     profilePage: {
         postData: [
             {id: 1, message: 'how are you'},
-            {id: 2, message: 'how do you do'}
+            {id: 2, message: 'how do you do'},
+            {id: 3, message: 'Люблю Сашеньку'}
         ]
     },
     dialogsPage: {
@@ -18,6 +19,12 @@ let state = {
             {id: 2, message: 'Hi'},
             {id: 3, message: 'I Tolya'},
             {id: 4, message: 'How are you'},
+        ],
+    },
+    sideBarPage:{dialogsData: [
+            {id: 1, name: 'Tolya'},
+            {id: 2, name: 'Andrey'},
+            {id: 3, name: 'Igor'},
         ],
     }
 };

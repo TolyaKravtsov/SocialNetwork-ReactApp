@@ -5,11 +5,10 @@ import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
 import Dialogs from "./components/Dialogs/Dialogs";
 import Route from "react-router-dom/es/Route";
-import {BrowserRouter as Router} from "react-router-dom";
+
 
 const App = (props) => {
     return (
-        <Router>
             <div className='app-wrapper'>
                 <Header/>
                 <Navbar/>
@@ -18,9 +17,6 @@ const App = (props) => {
                     <Route exact path="/profile" render={() => <Profile state={props.state.profilePage}/>}/>
                 </div>
             </div>
-        </Router>
-
-
     );
 
 };

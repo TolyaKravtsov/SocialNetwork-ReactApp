@@ -24,7 +24,10 @@ const Navbar = (props) => {
             <div className={navbar.item}>
                 <a href="">Settings</a>
             </div>
+
+            <div><h2>Friends</h2></div>
         </nav>
+
 
     );
 

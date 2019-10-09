@@ -9,9 +9,22 @@ const Posts = (props) => {
             )
         }
     );
+    let newPostElement = React.createRef();   //create link
+
+    let addPost = () => {
+        let text = newPostElement.current.value;
+        alert(text)
+
+    };
     return (
         <div>
-            {postElement}
+            <div>
+                {postElement}
+            </div>
+            <div>
+                <textarea ref={newPostElement} name="Add Post" id="" cols="30" rows="3">Post</textarea>
+                <button onClick={addPost}>click</button>
+            </div>
         </div>
     );
 };
