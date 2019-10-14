@@ -9,20 +9,29 @@ const Posts = (props) => {
             )
         }
     );
-    let newPostElement = React.createRef();   //create link
-    let addPost = () => {
+
+    let onPostChanged = () => {
         let text = newPostElement.current.value;
-        props.addPost(text);
-        newPostElement.current.value ='';
+        props.updateNewPostText(text);
+        console.log(text);
     };
+
+    let newPostElement = React.createRef();   //create link
+
+    let addPost = () => {
+        props.addPost();
+    };
+
+
     return (
         <div>
             <div>
                 {postElement}
             </div>
             <div>
-                <textarea ref={newPostElement} name="Add Post" id="" cols="30" rows="3">Post</textarea>
-                <button onClick={addPost}>click</button>
+                <textarea onChange={onPostChanged} ref={newPostElement} name="Add Post" id="" cols="30"
+                          rows="3">{props.newPostText}</textarea>
+                <button onClick={addPost}>add</button>
             </div>
         </div>
     );
