@@ -17,8 +17,6 @@ const Dialogs = (props) => {
             )
         }
     );
-
-
     let newMessageElement = React.createRef();   //create link
 
     let addPost = () => {

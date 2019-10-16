@@ -9,19 +9,18 @@ import Route from "react-router-dom/es/Route";
 
 const App = (props) => {
     return (
-            <div className='app-wrapper'>
-                <Header/>
-                <Navbar/>
-                <div className='app-wrapper-content'>
-                    <Route exact path="/dialogs" render={() => <Dialogs state={props.state.dialogsPage}/>}/>
-                    <Route exact path="/profile" render={() => <Profile
-                        profilePage={props.state.profilePage}
-                        addPost={props.addPost}
-                        newPost={props.state.newPostText}
-                        updateNewPostText={props.updateNewPostText}/>
-                        }/>
-                </div>
+        <div className='app-wrapper'>
+            <Header/>
+            <Navbar/>
+            <div className='app-wrapper-content'>
+                <Route exact path="/dialogs" render={() => <Dialogs state={props.state.dialogsPage}/>}/>
+                <Route exact path="/profile" render={() => <Profile
+                    profilePage={props.state.profilePage}
+                    addPost={props.addPost}
+                    dispatch={props.dispatch}/>
+                }/>
             </div>
+        </div>
     );
 
 };
