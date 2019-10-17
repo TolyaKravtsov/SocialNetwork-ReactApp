@@ -2,9 +2,9 @@ import React from 'react';
 import dialogs from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
+import {addMessageActionCreator, updateMessageTextActionCreator,} from "../../redux/state";
 
 const Dialogs = (props) => {
-
     let dialogsElement = props.state.dialogsData.map((dialog) => {
             return <DialogItem name={dialog.name} id={dialog.id}/>
 
@@ -17,11 +17,20 @@ const Dialogs = (props) => {
             )
         }
     );
+
+
+    let onMessageChanged = () => {
+        let message = newMessageElement.current.value;
+        let action = updateMessageTextActionCreator(message);
+        props.dispatch(action);
+        console.log(message);
+
+    };
+
     let newMessageElement = React.createRef();   //create link
 
-    let addPost = () => {
-        let text = newMessageElement.current.value;
-        alert(text)
+    let addMessage = () => {
+        props.dispatch(addMessageActionCreator());
     };
 
     return (
@@ -34,8 +43,9 @@ const Dialogs = (props) => {
                 {messagesElement}
             </div>
             <div>
-                <textarea ref={newMessageElement} name="Add Post" id="" cols="30" rows="3">Post</textarea>
-                <button onClick={addPost}>click</button>
+                <textarea onChange={onMessageChanged} ref={newMessageElement} name="Add Message" id="" cols="30"
+                          rows="3" value={props.newMessageText}/>
+                <button onClick={addMessage}>click</button>
             </div>
         </div>
     )
