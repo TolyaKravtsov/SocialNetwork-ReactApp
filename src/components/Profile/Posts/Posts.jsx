@@ -1,6 +1,6 @@
 import React from 'react';
 import Post from "./Post/Post";
-import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../redux/state";
+import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../redux/store";
 
 const Posts = (props) => {
     let postElement = props.postData.map((post) => {
