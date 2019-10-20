@@ -19,4 +19,16 @@ const dialogsPageReducer = (state, action) => {
     }
 };
 
+export const addMessageActionCreator = () => {
+    return {
+        type: ADD_MESSAGE
+    }
+};
+
+export const updateMessageTextActionCreator = (message) => {
+    return {
+        type: UPDATE_NEW_MESSAGE_TEXT, newMessage: message
+    }
+};
+
 export default dialogsPageReducer;
