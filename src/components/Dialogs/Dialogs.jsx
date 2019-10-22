@@ -2,8 +2,6 @@ import React from 'react';
 import dialogs from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
-import {addMessageActionCreator, updateMessageTextActionCreator} from "../../redux/reducer/dialogsPageReducer";
-
 
 const Dialogs = (props) => {
     let dialogsElement = props.state.dialogsData.map((dialog) => {
@@ -21,17 +19,14 @@ const Dialogs = (props) => {
 
 
     let onMessageChanged = () => {
-        let message = newMessageElement.current.value;
-        let action = updateMessageTextActionCreator(message);
-        props.dispatch(action);
-        console.log(message);
-
+        let body = newMessageElement.current.value;
+        props.updateNewMessage(body);
     };
 
     let newMessageElement = React.createRef();   //create link
 
     let addMessage = () => {
-        props.dispatch(addMessageActionCreator());
+        props.sendMessage();
     };
 
     return (
