@@ -41,7 +41,7 @@ export const addMessageActionCreator = () => {
     }
 };
 
-export const updateMessageTextActionCreator = (message) => {
+export const    updateMessageTextActionCreator = (message) => {
     return {
         type: UPDATE_NEW_MESSAGE_TEXT, newMessage: message
     }
