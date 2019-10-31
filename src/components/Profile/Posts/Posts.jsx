@@ -11,7 +11,7 @@ const Posts = (props) => {
 
     let onPostChanged = () => {
         let text = newPostElement.current.value;
-        props.updateNewPostTextActionCreator(text)
+        props.updateNewPostTextAC(text)
     };
 
     let newPostElement = React.createRef();   //create link

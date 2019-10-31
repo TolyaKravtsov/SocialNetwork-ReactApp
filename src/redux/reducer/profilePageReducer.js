@@ -30,18 +30,8 @@ const profilePageReducer = (state = initialState, action) => {
             return state;
     }
 };
+//      AC- actionCreator
+export const addPostAC = () => ({type: ADD_POST});
+export const updateNewPostTextAC = (text) => ({type: UPDATE_NEW_POST_TEXT, newText: text});
 
-export const addPostActionCreator = () => {
-    return {
-        type: ADD_POST
-    }
-
-};
-
-
-export const updateNewPostTextActionCreator = (text) => {
-    return {
-        type: UPDATE_NEW_POST_TEXT, newText: text
-    };
-};
 export default profilePageReducer;

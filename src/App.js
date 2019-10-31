@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
 import Route from "react-router-dom/es/Route";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
+import FindUsersContainer from "./components/Users/findUsersContainer.jsx";
 
 const App = (props) => {
     return (
@@ -12,16 +13,18 @@ const App = (props) => {
             <Header/>
             <Navbar/>
             <div className='app-wrapper-content'>
-                <Route exact path="/dialogs" render={() => <DialogsContainer/>}/>
-                <Route exact path="/profile" render={() => <Profile/>
-                }/>
+                <Route path="/dialogs"
+                       render={() => <DialogsContainer/>}/>
+
+                <Route path="/profile"
+                       render={() => <Profile/>}/>
+
+                <Route path="/users"
+                       render={() => <FindUsersContainer/>}/>
             </div>
         </div>
     );
 
 };
-
-
-
 
 export default App;
