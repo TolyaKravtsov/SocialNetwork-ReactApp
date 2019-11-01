@@ -1,44 +1,27 @@
 import React from "react";
 import findUsers from "./findUsers.module.css"
+import * as axios from "axios";
 
 const Users = (props) => {
 
-    if (props.users.length === 0) {
-        props.setUsers([
-            {
-                id: 1,
-                photoUrl: 'https://clck.ru/JEiYu',
-                followed: true,
-                fullName: 'Tolya.K',
-                status: 'Im fine',
-                location: {country: 'Belarus', town: 'Minsk'}
-            },
-            {
-                id: 2,
-                photoUrl: 'https://clck.ru/JEiYu',
-                followed: false,
-                fullName: 'Dimych.K',
-                status: 'Im leader',
-                location: {country: 'Belarus', town: 'Minsk'}
-            },
-            {
-                id: 3,
-                photoUrl: 'https://clck.ru/JEiYu',
-                followed: true,
-                fullName: 'John.S',
-                status: 'Stark best',
-                location: {country: 'Vesteros', town: 'Winterfell'}
-            }]
-        )
-    }
+    let getUsers = () => {
+        if (props.users.length === 0) {
+            axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
+                props.setUsers(response.data.items)
+            });
+        }
+    };
     return (
         <div>
+            <button onClick={getUsers}>getUsers</button>
             {props.users.map(users => <div key={users.id}>
                 <span>
                     <div>
-                        <img className={findUsers.img} src="https://clck.ru/JS8HD" alt="photo"/>
+                        <img className={findUsers.img}
+                             src={users.photos.small != null ? users.photos.small : "https://cutt.ly/denvfka"}
+                             alt="photo"/>
                     </div>
-                    <div>
+                     <div>
                         {
                             users.followed
                                 ? <button onClick={() => {
@@ -53,7 +36,7 @@ const Users = (props) => {
                 <span>
                     <span>
                         <div>
-                            {users.fullName}
+                            {users.name}
                         </div>
                         <div>
                             {users.status}
@@ -61,10 +44,10 @@ const Users = (props) => {
                     </span>
                     <span>
                         <div>
-                            {users.location.country}
+                            {"users.location.country"}
                         </div>
                         <div>
-                            {users.location.city}
+                            {""}
                         </div>
                     </span>
                 </span>
