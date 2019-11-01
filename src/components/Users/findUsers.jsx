@@ -2,19 +2,21 @@ import React from "react";
 import findUsers from "./findUsers.module.css"
 import * as axios from "axios";
 
-const Users = (props) => {
+class Users extends React.Component {
+    constructor(props) {
+        super(props);
+        axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
+            this.props.setUsers(response.data.items)
+        });
+    }
 
-    let getUsers = () => {
-        if (props.users.length === 0) {
-            axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
-                props.setUsers(response.data.items)
-            });
-        }
-    };
-    return (
-        <div>
-            <button onClick={getUsers}>getUsers</button>
-            {props.users.map(users => <div key={users.id}>
+
+    render() {
+
+        return (
+            <div>
+                {
+                    this.props.users.map(users => <div key={users.id}>
                 <span>
                     <div>
                         <img className={findUsers.img}
@@ -25,15 +27,15 @@ const Users = (props) => {
                         {
                             users.followed
                                 ? <button onClick={() => {
-                                    props.unfollow(users.id)
+                                    this.props.unfollow(users.id)
                                 }}>Unfollow</button>
                                 : <button onClick={() => {
-                                    props.follow(users.id)
+                                    this.props.follow(users.id)
                                 }}>Follow</button>
                         }
                 </div>
                 </span>
-                <span>
+                        <span>
                     <span>
                         <div>
                             {users.name}
@@ -51,11 +53,11 @@ const Users = (props) => {
                         </div>
                     </span>
                 </span>
-            </div>)}
-        </div>
-    )
+                    </div>)}
+            </div>
+        )
 
-};
-
+    }
+}
 
 export default Users;
