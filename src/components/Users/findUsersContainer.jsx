@@ -1,11 +1,11 @@
 import React from "react";
 import {
-    followAC,
-    preloaderTurnedAC,
-    setCurrentPageAC,
-    setUsersAC,
-    setUsersTotalCountAC,
-    unFollowAC
+    follow,
+    preloaderTurned,
+    setCurrentPage,
+    setUsers,
+    setUsersTotalCount,
+    unfollow
 } from "../../redux/reducer/findUsersPageReducer";
 import {connect} from "react-redux";
 import * as axios from "axios";
@@ -18,7 +18,7 @@ class usersContainer extends React.Component {
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
             this.props.preloaderTurned(false);
             this.props.setUsers(response.data.items);
-            this.props.setTotalUsersCount(response.data.totalCount)
+            this.props.setUsersTotalCount(response.data.totalCount)
         });
     }
 
@@ -60,33 +60,31 @@ let mapStateToProps = (state) => {
     }
 };
 
-let mapDispatchToProps = (dispatch) => {
+/*let mapDispatchToProps = (dispatch) => {
     return {
         follow: (userID) => {
-            dispatch(followAC(userID))
+            dispatch(follow(userID))
         },
         unfollow: (userID) => {
-            dispatch(unFollowAC(userID))
+            dispatch(unfollow(userID))
         },
         setUsers: (users) => {
-            dispatch(setUsersAC(users))
+            dispatch(setUsers(users))
         },
         setCurrentPage: (pageNumber) => {
-            dispatch(setCurrentPageAC(pageNumber))
+            dispatch(setCurrentPage(pageNumber))
         },
         setTotalUsersCount: (totalCount) => {
-            dispatch(setUsersTotalCountAC(totalCount))
+            dispatch(setUsersTotalCount(totalCount))
         },
         preloaderTurned: (inProgress) => {
-            dispatch(preloaderTurnedAC(inProgress))
+            dispatch(preloaderTurned(inProgress))
         }
 
 
     }
-};
+};*/
 
-export default connect(mapStateToProps, mapDispatchToProps)(usersContainer);
-
-
+export default connect(mapStateToProps, {follow, unfollow, setUsers, setCurrentPage, setUsersTotalCount, preloaderTurned,})(usersContainer);
 
 

@@ -55,12 +55,12 @@ const findUsersPageReducer = (state = initialState, action) => {
 };
 
 //      AC- actionCreator
-export const followAC = (userID) => ({type: FOLLOW, userID});
-export const unFollowAC = (userID) => ({type: UNFOLLOW, userID});
-export const setUsersAC = (users) => ({type: SET_USERS, users});
-export const setCurrentPageAC = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage: currentPage});
-export const setUsersTotalCountAC = (totalUsersCount) => ({type: SET_TOTAL_USERS_COUNT, count: totalUsersCount});
-export const preloaderTurnedAC = (inProgress) => ({type: PRELOADER_TURNED, inProgress: inProgress});
+export const follow = (userID) => ({type: FOLLOW, userID});
+export const unfollow = (userID) => ({type: UNFOLLOW, userID});
+export const setUsers = (users) => ({type: SET_USERS, users});
+export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage: currentPage});
+export const setUsersTotalCount = (totalUsersCount) => ({type: SET_TOTAL_USERS_COUNT, count: totalUsersCount});
+export const preloaderTurned = (inProgress) => ({type: PRELOADER_TURNED, inProgress: inProgress});
 
 
 export default findUsersPageReducer;
