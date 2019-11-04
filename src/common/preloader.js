@@ -1,7 +1,7 @@
 import React from "react";
 import preloader from "./Rolling-2s-200px.svg"
 
-let preloaderComponent = (props) => {
+let PreloaderComponent = (props) => {
     return (
         <div>
         <img src={preloader}/>
@@ -9,4 +9,4 @@ let preloaderComponent = (props) => {
     )
 };
 
-export default preloaderComponent;
+export default PreloaderComponent;
