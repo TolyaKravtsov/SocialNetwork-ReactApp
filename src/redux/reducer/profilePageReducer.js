@@ -10,7 +10,7 @@ let initialState = {
         {id: 3, message: 'Люблю Сашеньку'}
     ],
     newPostText: '',
-    profile:null,
+    profile: null,
 };
 
 const profilePageReducer = (state = initialState, action) => {
