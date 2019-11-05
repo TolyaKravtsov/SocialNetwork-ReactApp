@@ -12,6 +12,7 @@ let initialState = {
     currentPage: 1,
     totalUsersCount: 0,
     inProgress:false,
+    maxPage:0,
 };
 
 const findUsersPageReducer = (state = initialState, action) => {

@@ -1,11 +1,11 @@
 import React from "react";
 import findUsers from "./findUsers.module.css";
+import {NavLink} from "react-router-dom";
 
 let Users = (props) => {
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
-
     let pages = [];
-    for (let i = 1; i <= pagesCount; i++) {
+    for (let i = 1; i <= 20; i++) {
         pages.push(i);
     }
 
@@ -23,9 +23,11 @@ let Users = (props) => {
                 props.users.map(users => <div key={users.id}>
                 <span>
                     <div>
+                        <NavLink to={'/profile/' + users.id}>
                         <img className={findUsers.img}
                              src={users.photos.small != null ? users.photos.small : "https://cutt.ly/denvfka"}
                              alt="photo"/>
+                        </NavLink>
                     </div>
                      <div>
                         {

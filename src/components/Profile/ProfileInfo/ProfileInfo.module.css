@@ -3,8 +3,14 @@
     padding: 10px;
 }
 
-img{
+.backPage {
+    height: 300px;
+    width: 1000px;
+}
+
+
+.avatar{
     height: 100px;
-    width: 500px;
+    weight: 100px;
 
 }

@@ -5,7 +5,9 @@
     align-content: center;
 }
 
-img {
+.backPage {
     height: 300px;
     width: 1000px;
 }
+
+
