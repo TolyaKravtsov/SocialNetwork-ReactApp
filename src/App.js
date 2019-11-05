@@ -1,16 +1,16 @@
 import React from 'react';
 import './App.css';
-import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import Route from "react-router-dom/es/Route";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import FindUsersContainer from "./components/Users/findUsersContainer.jsx";
 import ProfileContainer from "./components/Profile/profileContainer";
+import HeaderContainer from "./components/Header/HeaderContainer";
 
 const App = (props) => {
     return (
         <div className='app-wrapper'>
-            <Header/>
+            <HeaderContainer/>
             <Navbar/>
             <div className='app-wrapper-content'>
                 <Route path="/dialogs"

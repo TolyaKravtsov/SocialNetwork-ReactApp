@@ -60,31 +60,6 @@ let mapStateToProps = (state) => {
     }
 };
 
-/*let mapDispatchToProps = (dispatch) => {
-    return {
-        follow: (userID) => {
-            dispatch(follow(userID))
-        },
-        unfollow: (userID) => {
-            dispatch(unfollow(userID))
-        },
-        setUsers: (users) => {
-            dispatch(setUsers(users))
-        },
-        setCurrentPage: (pageNumber) => {
-            dispatch(setCurrentPage(pageNumber))
-        },
-        setTotalUsersCount: (totalCount) => {
-            dispatch(setUsersTotalCount(totalCount))
-        },
-        preloaderTurned: (inProgress) => {
-            dispatch(preloaderTurned(inProgress))
-        }
-
-
-    }
-};*/
-
 export default connect(mapStateToProps, {follow, unfollow, setUsers, setCurrentPage, setUsersTotalCount, preloaderTurned,})(usersContainer);
 
 
