@@ -1,3 +1,5 @@
+import {usersAPI} from "../../api/api";
+
 const FOLLOW = ' FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
@@ -12,9 +14,9 @@ let initialState = {
     pageSize: 5,
     currentPage: 1,
     totalUsersCount: 0,
-    inProgress:false,
-    maxPage:0,
-    followingInProgress:false,
+    inProgress: false,
+    maxPage: 0,
+    followingInProgress: false,
 };
 
 const findUsersPageReducer = (state = initialState, action) => {
@@ -61,13 +63,55 @@ const findUsersPageReducer = (state = initialState, action) => {
 };
 
 //      AC- actionCreator
-export const follow = (userID) => ({type: FOLLOW, userID});
-export const unfollow = (userID) => ({type: UNFOLLOW, userID});
+export const followSuccess = (userID) => ({type: FOLLOW, userID});
+export const unfollowSuccess = (userID) => ({type: UNFOLLOW, userID});
 export const setUsers = (users) => ({type: SET_USERS, users});
 export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage: currentPage});
 export const setUsersTotalCount = (totalUsersCount) => ({type: SET_TOTAL_USERS_COUNT, count: totalUsersCount});
 export const preloaderTurned = (inProgress) => ({type: PRELOADER_TURNED, inProgress: inProgress});
 export const followingInProgress = (followingProgress) => ({type: FOLLOWING_PROGRESS, inProgress: followingProgress});
+
+export const getUsersThunkCreator = (currentPage,pageSize) => {
+    return (dispatch) => {
+        dispatch(preloaderTurned(true)
+        );
+
+        usersAPI.getUsers(currentPage,pageSize)
+            .then(data => {
+                dispatch(preloaderTurned(false));
+                dispatch(setUsers(data.items));
+                dispatch(setUsersTotalCount(data.totalCount));
+            });
+    };
+
+};
+
+export const unfollow = (userId) => {
+    return (dispatch) => {
+      dispatch(followingInProgress(true));
+        usersAPI.unfollow(userId)
+            .then(response => {
+                if (response.data.resultCode === 0) {
+                    dispatch(unfollowSuccess(userId));
+                    dispatch(followingInProgress(false));
+                }
+            });
+    };
+
+};
+export const follow = (userId) => {
+    return (dispatch) => {
+      dispatch(followingInProgress(true));
+        usersAPI.follow(userId)
+            .then(response => {
+                if (response.data.resultCode === 0) {
+                    dispatch(followSuccess(userId));
+                    dispatch(followingInProgress(false));
+                }
+            });
+    };
+
+};
 
 
 export default findUsersPageReducer;

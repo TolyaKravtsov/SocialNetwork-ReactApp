@@ -2,37 +2,23 @@ import React from "react";
 import {
     follow,
     followingInProgress,
+    getUsersThunkCreator,
     preloaderTurned,
     setCurrentPage,
-    setUsers,
-    setUsersTotalCount,
     unfollow
 } from "../../redux/reducer/findUsersPageReducer";
 import {connect} from "react-redux";
 import Users from "./FindUsers";
 import PreloaderComponent from "../../common/preloader";
-import {usersAPI} from "../../api/api";
 
 class usersContainer extends React.Component {
     componentDidMount() {
-        this.props.preloaderTurned(true);
-
-      usersAPI.getUsers(this.props.currentPage, this.props.pageSize)
-            .then(data => {
-                this.props.preloaderTurned(false);
-                this.props.setUsers(data.items);
-                this.props.setUsersTotalCount(data.totalCount);
-            });
+        this.props.getUsersThunkCreator(this.props.currentPage, this.props.pageSize);
     }
 
-    onPageChanged = pageNumber => {
-        this.props.preloaderTurned(true);
-        this.props.setCurrentPage(pageNumber);
-        usersAPI.getUsers(pageNumber, this.props.pageSize)
-            .then(data => {
-                this.props.preloaderTurned(false);
-                this.props.setUsers(data.items);
-            });
+    onPageChanged = (pageNumber) => {
+        this.props.getUsersThunkCreator(pageNumber,this.props.pageSize);
+
     };
 
     render() {
@@ -70,10 +56,9 @@ export default connect(
     {
         follow,
         unfollow,
-        setUsers,
         setCurrentPage,
-        setUsersTotalCount,
         preloaderTurned,
         followingInProgress,
+        getUsersThunkCreator,
     }
 )(usersContainer);
