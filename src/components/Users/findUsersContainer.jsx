@@ -1,6 +1,7 @@
 import React from "react";
 import {
     follow,
+    followingInProgress,
     preloaderTurned,
     setCurrentPage,
     setUsers,
@@ -10,7 +11,7 @@ import {
 import {connect} from "react-redux";
 import Users from "./FindUsers";
 import PreloaderComponent from "../../common/preloader";
-import {getUsers, usersAPI} from "../../api/api";
+import {usersAPI} from "../../api/api";
 
 class usersContainer extends React.Component {
     componentDidMount() {
@@ -46,6 +47,7 @@ class usersContainer extends React.Component {
                     onPageChanged={this.onPageChanged}
                     unfollow={this.props.unfollow}
                     follow={this.props.follow}
+                    followingInProgress={this.props.followingInProgress}
                 />
             </>
         );
@@ -58,7 +60,8 @@ let mapStateToProps = state => {
         pageSize: state.findUsersPage.pageSize,
         totalUsersCount: state.findUsersPage.totalUsersCount,
         currentPage: state.findUsersPage.currentPage,
-        inProgress: state.findUsersPage.inProgress
+        inProgress: state.findUsersPage.inProgress,
+        followingInProgress: state.findUsersPage.followingInProgress
     };
 };
 
@@ -70,6 +73,7 @@ export default connect(
         setUsers,
         setCurrentPage,
         setUsersTotalCount,
-        preloaderTurned
+        preloaderTurned,
+        followingInProgress,
     }
 )(usersContainer);

@@ -6,7 +6,7 @@ import * as axios from "axios";
 let Users = props => {
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
     let pages = [];
-    for (let i = 1; i <= pagesCount; i++) {
+    for (let i = 1; i <= 20; i++) {
         pages.push(i);
     }
 
@@ -42,50 +42,58 @@ let Users = props => {
             </div>
             <div>
               {users.followed ? (
-                  <button
-                      onClick={() => {
-                          axios
-                              .delete(
-                                  `https://social-network.samuraijs.com/api/1.0//follow/${users.id}`,
-                                  {
-                                      withCredentials: true, headers: {
-                                          "API-KEY": "858cdff0-21c8-4da1-ac2d-e0c7e81bba49"
+                      <button
+                          onClick={() => {
+                              props.followingInProgress(true);
+
+
+                              axios
+                                  .delete(
+                                      `https://social-network.samuraijs.com/api/1.0//follow/${users.id}`,
+                                      {
+                                          withCredentials: true,
+                                          headers: {
+                                              "API-KEY": "858cdff0-21c8-4da1-ac2d-e0c7e81bba49"
+                                          }
                                       }
-                                  },
-                              )
-                              .then(response => {
-                                  if (response.data.resultCode == 0) {
-                                      props.unfollow(users.id);
-                                  }
-                              });
-                      }}
-                  >
-                      Unfollow
-                  </button>
-              ) : (
-                  <button
-                      onClick={() => {
-                          axios
-                              .post(
-                                  `https://social-network.samuraijs.com/api/1.0//follow/${users.id}`,
-                                  {},
-                                  {
-                                      withCredentials: true,
-                                      headers: {
-                                          "API-KEY": "858cdff0-21c8-4da1-ac2d-e0c7e81bba49"
+                                  )
+                                  .then(response => {
+                                      if (response.data.resultCode === 0) {
+                                          props.unfollow(users.id);
+                                          props.followingInProgress(false);
                                       }
-                                  }
-                              )
-                              .then(response => {
-                                  if (response.data.resultCode == 0) {
-                                      props.follow(users.id);
-                                  }
-                              });
-                      }}
-                  >
-                      Follow
-                  </button>
-              )}
+                                  });
+                          }}>
+
+                          Unfollow
+                      </button>
+                  )
+                  : (
+                      <button
+                          onClick={() => {
+                              props.followingInProgress(false);
+                              axios
+                                  .post(
+                                      `https://social-network.samuraijs.com/api/1.0//follow/${users.id}`,
+                                      {},
+                                      {
+                                          withCredentials: true,
+                                          headers: {
+                                              "API-KEY": "858cdff0-21c8-4da1-ac2d-e0c7e81bba49"
+                                          }
+                                      }
+                                  )
+                                  .then(response => {
+                                      if (response.data.resultCode === 0) {
+                                          props.follow(users.id);
+                                      }
+                                      props.followingInProgress(false)
+                                  });
+                          }}
+                      >
+                          Follow
+                      </button>
+                  )}
             </div>
           </span>
                     <span>

@@ -4,6 +4,7 @@ const SET_USERS = 'SET_USERS';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
 const PRELOADER_TURNED = 'PRELOADER_TURNED';
+const FOLLOWING_PROGRESS = 'FOLLOWING_PROGRESS';
 
 let initialState = {
     users: [],
@@ -13,6 +14,7 @@ let initialState = {
     totalUsersCount: 0,
     inProgress:false,
     maxPage:0,
+    followingInProgress:false,
 };
 
 const findUsersPageReducer = (state = initialState, action) => {
@@ -50,6 +52,9 @@ const findUsersPageReducer = (state = initialState, action) => {
         case PRELOADER_TURNED: {
             return {...state, inProgress: action.inProgress}
         }
+        case FOLLOWING_PROGRESS: {
+            return {...state, followingInProgress: action.followingInProgress}
+        }
         default:
             return state;
     }
@@ -62,6 +67,7 @@ export const setUsers = (users) => ({type: SET_USERS, users});
 export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage: currentPage});
 export const setUsersTotalCount = (totalUsersCount) => ({type: SET_TOTAL_USERS_COUNT, count: totalUsersCount});
 export const preloaderTurned = (inProgress) => ({type: PRELOADER_TURNED, inProgress: inProgress});
+export const followingInProgress = (followingProgress) => ({type: FOLLOWING_PROGRESS, inProgress: followingProgress});
 
 
 export default findUsersPageReducer;
