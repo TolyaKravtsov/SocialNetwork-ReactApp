@@ -2,6 +2,7 @@ import React from 'react';
 import dialogs from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
+import {Redirect} from "react-router-dom";
 
 const Dialogs = (props) => {
     let dialogsElement = props.dialogsData.map((dialog) => {
@@ -22,6 +23,8 @@ const Dialogs = (props) => {
         let body = newMessageElement.current.value;
         props.updateNewMessage(body);
     };
+
+    if (props.isAuth === false) return <Redirect to={'/login'}/>;
 
     let newMessageElement = React.createRef();   //create link
 
