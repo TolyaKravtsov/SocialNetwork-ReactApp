@@ -10,6 +10,7 @@ import {
 import {connect} from "react-redux";
 import Users from "./FindUsers";
 import PreloaderComponent from "../../common/preloader";
+import {withAuthRedirect} from "../../hoc/authRedirect";
 
 class usersContainer extends React.Component {
     componentDidMount() {
@@ -51,7 +52,7 @@ let mapStateToProps = state => {
     };
 };
 
-export default connect(
+export default withAuthRedirect(connect(
     mapStateToProps,
     {
         follow,
@@ -61,4 +62,4 @@ export default connect(
         followingInProgress,
         getUsersThunkCreator,
     }
-)(usersContainer);
+)(usersContainer));
