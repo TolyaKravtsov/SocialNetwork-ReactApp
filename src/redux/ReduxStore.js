@@ -6,13 +6,13 @@ import authReducer from "./reducer/authReducer";
 import thunkMiddleware from "redux-thunk";
 
 let AllReducers = combineReducers({
-  auth: authReducer,
-  profilePage: profilePageReducer,
-  dialogsPage: dialogsPageReducer,
-  findUsersPage: findUsersPageReducer
+    auth: authReducer,
+    profilePage: profilePageReducer,
+    dialogsPage: dialogsPageReducer,
+    findUsersPage: findUsersPageReducer
 });
 
-let store = createStore(AllReducers,applyMiddleware(thunkMiddleware));
+let store = createStore(AllReducers, applyMiddleware(thunkMiddleware));
 
 window.store = store;
 
