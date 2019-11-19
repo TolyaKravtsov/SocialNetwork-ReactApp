@@ -9,12 +9,13 @@ const ProfileInfo = (props) => {
     }
     return (
         <div>
-          {/*  <div><img className={profileInfo.backPage} src="https://clck.ru/JEiYu" alt=""/></div>*/}
+            {/*  <div><img className={profileInfo.backPage} src="https://clck.ru/JEiYu" alt=""/></div>*/}
             <img className={profileInfo.avatar} src={props.profile.photos.large} alt="ava"/>
             <div><span>{props.profile.aboutMe}</span></div>
             <div>{props.profile.contacts.vk}</div>
             <div className={profileInfo.description}>ava+description</div>
-            <ProfileStatus status = {"hello my friend"}/>
+            <div>статус:</div>
+            <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
         </div>
     )
 };
