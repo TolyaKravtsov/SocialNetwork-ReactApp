@@ -3,6 +3,8 @@ import dialogs from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import {Redirect} from "react-router-dom";
+import DialogsFormRedux from "./DialogsFormRedux";
+import {reduxForm} from "redux-form";
 
 const Dialogs = (props) => {
     let dialogsElement = props.dialogsData.map((dialog) => {
@@ -18,18 +20,12 @@ const Dialogs = (props) => {
         }
     );
 
-
-    let onMessageChanged = () => {
-        let body = newMessageElement.current.value;
-        props.updateNewMessage(body);
-    };
-
     if (props.isAuth === false) return <Redirect to={'/login'}/>;
 
-    let newMessageElement = React.createRef();   //create link
+    const AddMessageReduxForm = reduxForm({form: 'dialogAddMessageForm'})(DialogsFormRedux);
 
-    let addMessage = () => {
-        props.sendMessage();
+    const addNewMessage = (values) => {
+        props.sendMessage(values.newMessageBody);
     };
 
     return (
@@ -42,9 +38,7 @@ const Dialogs = (props) => {
                 {messagesElement}
             </div>
             <div>
-                <textarea onChange={onMessageChanged} ref={newMessageElement} name="Add Message" id="" cols="30"
-                          rows="3" value={props.newMessageText}/>
-                <button onClick={addMessage}>click</button>
+                <AddMessageReduxForm onSubmit={addNewMessage}/>
             </div>
         </div>
     )

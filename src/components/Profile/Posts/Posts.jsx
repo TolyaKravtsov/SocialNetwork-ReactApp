@@ -1,5 +1,7 @@
 import React from 'react';
 import Post from "./Post/Post";
+import AddPostForm from "./Post/AddPostForm";
+import {reduxForm} from "redux-form";
 
 const Posts = (props) => {
     let postElement = props.postData.map((post) => {
@@ -9,28 +11,20 @@ const Posts = (props) => {
         }
     );
 
-    let onPostChanged = () => {
-        let text = newPostElement.current.value;
-        props.updateNewPostTextAC(text)
+    const addNewPost = (values) => {
+        props.addPost(values.newMessageBody)
     };
 
-    let newPostElement = React.createRef();   //create link
+    const AddPostFormRedux = reduxForm({form: "addPostForm"})(AddPostForm);
 
-    let onAddPost = () => {
-        props.addPost();
-    };
+
     return (
         <div>
             <div>
                 {postElement}
             </div>
-            <div>
-                <textarea onChange={onPostChanged} ref={newPostElement} name="Add Post" id="" cols="30"
-                          rows="3" value={props.newPostText}/>
-                <button onClick={onAddPost}>add</button>
-            </div>
+            <AddPostFormRedux onSubmit={addNewPost}/>
         </div>
     );
 };
-
-export default Posts;
+export default Posts ;

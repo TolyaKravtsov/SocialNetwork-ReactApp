@@ -8,8 +8,8 @@ const Login = () => {
 
     const onSubmit = (formData) => {
         console.log(formData);
-
     };
+
     return (
         <div>
             <h1>Login</h1>
