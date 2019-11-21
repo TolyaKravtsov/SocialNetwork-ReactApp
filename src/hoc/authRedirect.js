@@ -17,7 +17,5 @@ export const withAuthRedirect = (Component) => {                //HOC
         }
     }
 
-
     return connect(mapStateToPropsForRedirect)(RedirectComponent);
-
 };

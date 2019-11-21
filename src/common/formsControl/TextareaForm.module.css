@@ -1,11 +1,16 @@
 .textareaForm.error input,
-.textareaForm.error textarea
-{
+.textareaForm.error textarea {
     border: red solid 1px;
 
 }
 
-.textareaForm.error span
-{
-color: red;
+.textareaForm.error span {
+    color: red;
+}
+
+
+.summaryError {
+    border: red;
+    padding: 10px;
+    color: red;
 }
