@@ -39,7 +39,7 @@ let store = {
         console.log('state changed')            //rerenderEntireTree
 
     },
-    getState() {
+    getState() {r
         return this._state;
     },
 

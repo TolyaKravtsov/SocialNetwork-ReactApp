@@ -10,8 +10,15 @@ import {
 import {connect} from "react-redux";
 import Users from "./FindUsers";
 import PreloaderComponent from "../../common/preloader";
-import {withAuthRedirect} from "../../hoc/authRedirect";
 import {compose} from "redux";
+import {
+    getCurrentPage,
+    getFollowingInProgress,
+    getInProgress,
+    getPageSizeSelector,
+    getTotalUsersCount, getUsers,
+    getUsersSelector
+} from "../../redux/reducer/users-selectors";
 
 class usersContainer extends React.Component {
     componentDidMount() {
@@ -44,18 +51,17 @@ class usersContainer extends React.Component {
 
 let mapStateToProps = state => {
     return {
-        users: state.findUsersPage.users,
-        pageSize: state.findUsersPage.pageSize,
-        totalUsersCount: state.findUsersPage.totalUsersCount,
-        currentPage: state.findUsersPage.currentPage,
-        inProgress: state.findUsersPage.inProgress,
-        followingInProgress: state.findUsersPage.followingInProgress
+        users: getUsers(state),
+        pageSize: getPageSizeSelector(state),
+        totalUsersCount: getTotalUsersCount(state),
+        currentPage: getCurrentPage(state),
+        inProgress: getInProgress(state),
+        followingInProgress: getFollowingInProgress(state),
     };
 };
 
 export default compose(
     connect(
         mapStateToProps,
-        {follow, unfollow, setCurrentPage, preloaderTurned, followingInProgress, getUsersThunkCreator,
-        })
+        {follow, unfollow, setCurrentPage, preloaderTurned, followingInProgress, getUsersThunkCreator,})
 )(usersContainer)

@@ -52,7 +52,7 @@ export const usersAPI = {
 
         return profileAPI.getProfile(userId);
     },
-};
+};  
 
 export const authAPI = {
     me() {

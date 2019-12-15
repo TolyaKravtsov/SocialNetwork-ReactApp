@@ -73,14 +73,16 @@ export const followingInProgress = (followingProgress) => ({type: FOLLOWING_PROG
 
 export const getUsersThunkCreator = (currentPage,pageSize) => {
     return (dispatch) => {
-        dispatch(preloaderTurned(true)
+        dispatch(preloaderTurned(true),
+            dispatch(setCurrentPage(currentPage)),
         );
 
         usersAPI.getUsers(currentPage,pageSize)
             .then(data => {
-                dispatch(preloaderTurned(false));
+
                 dispatch(setUsers(data.items));
                 dispatch(setUsersTotalCount(data.totalCount));
+                dispatch(preloaderTurned(false));
             });
     };
 

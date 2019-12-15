@@ -28,5 +28,5 @@ const Login = (props) => {
 
 const mapStateToProps = (state) => ({
     isAuth: state.auth.isAuth
-})
+});
 export default connect(mapStateToProps, {loginUser})(Login);

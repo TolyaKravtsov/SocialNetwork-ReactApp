@@ -13,6 +13,7 @@ const DialogsFormRedux = (props) => {
                        validate={[requiredField, MaxLength100]}/>
             </div>
             <div>
+
                 <button>click</button>
             </div>
 

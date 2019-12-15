@@ -33,6 +33,6 @@ const dialogsPageReducer = (state = initialState, action) => {
 };
 
 //      AC- actionCreator
-export const addMessageAC = (newMessageBody) => ({type: ADD_MESSAGE, newMessageBody});
+export const   addMessageAC = (newMessageBody) => ({type: ADD_MESSAGE, newMessageBody});
 
 export default dialogsPageReducer;
