@@ -3,7 +3,7 @@ import Post from "./Post/Post";
 import AddPostForm from "./Post/AddPostForm";
 import {reduxForm} from "redux-form";
 
-const Posts = (props) => {
+const Posts = React.memo(props => {
     let postElement = props.postData.map((post) => {
             return (
                 <Post message={post.message} key={post.id}/>
@@ -26,5 +26,6 @@ const Posts = (props) => {
             <AddPostFormRedux onSubmit={addNewPost}/>
         </div>
     );
-};
-export default Posts ;
+});
+
+export default Posts;
