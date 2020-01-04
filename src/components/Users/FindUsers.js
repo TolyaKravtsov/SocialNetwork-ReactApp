@@ -1,30 +1,14 @@
 import React from "react";
 import findUsers from "./findUsers.module.css";
 import {NavLink} from "react-router-dom";
-import * as axios from "axios";
-import {usersAPI} from "../../api/api";
+import Paginator from "./Paginator";
 
-let Users = props => {
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
-    let pages = [];
-    for (let i = 1; i <= 20; i++) {
-        pages.push(i);
-    }
+let Users = ({currentPage,onPageChanged,totalUsersCount,pageSize, ...props}) => {
 
     return (
         <div>
-            {pages.map(pages => {
-                return (
-                    <span
-                        className={props.currentPage === pages && findUsers.selectedPage}
-                        onClick={() => {
-                            props.onPageChanged(pages);
-                        }}
-                    >
-            {pages}
-          </span>
-                );
-            })}
+            <Paginator currentPage={currentPage} onPageChanged={onPageChanged}
+                       totalUsersCount={totalUsersCount} pageSize={pageSize}/>
             {props.users.map(users => (
                 <div key={users.id}>
           <span>

@@ -71,48 +71,40 @@ export const setUsersTotalCount = (totalUsersCount) => ({type: SET_TOTAL_USERS_C
 export const preloaderTurned = (inProgress) => ({type: PRELOADER_TURNED, inProgress: inProgress});
 export const followingInProgress = (followingProgress) => ({type: FOLLOWING_PROGRESS, inProgress: followingProgress});
 
-export const getUsersThunkCreator = (currentPage,pageSize) => {
-    return (dispatch) => {
+export const getUsersThunkCreator = (currentPage, pageSize) => {
+    return async (dispatch) => {
         dispatch(preloaderTurned(true),
             dispatch(setCurrentPage(currentPage)),
         );
 
-        usersAPI.getUsers(currentPage,pageSize)
-            .then(data => {
-
-                dispatch(setUsers(data.items));
-                dispatch(setUsersTotalCount(data.totalCount));
-                dispatch(preloaderTurned(false));
-            });
+        let data = await usersAPI.getUsers(currentPage, pageSize)
+        dispatch(setUsers(data.items));
+        dispatch(setUsersTotalCount(data.totalCount));
+        dispatch(preloaderTurned(false));
     };
 
 };
 
 export const unfollow = (userId) => {
-    return (dispatch) => {
-      dispatch(followingInProgress(true));
-        usersAPI.unfollow(userId)
-            .then(response => {
-                if (response.data.resultCode === 0) {
-                    dispatch(unfollowSuccess(userId));
-                    dispatch(followingInProgress(false));
-                }
-            });
+    return async (dispatch) => {
+        await followUnfollowFlow(dispatch, userId, usersAPI.unfollow.bind(usersAPI), unfollowSuccess)
     };
 
 };
 export const follow = (userId) => {
-    return (dispatch) => {
-      dispatch(followingInProgress(true));
-        usersAPI.follow(userId)
-            .then(response => {
-                if (response.data.resultCode === 0) {
-                    dispatch(followSuccess(userId));
-                    dispatch(followingInProgress(false));
-                }
-            });
+    return async (dispatch) => {
+        await followUnfollowFlow(dispatch, userId, usersAPI.follow.bind(usersAPI), followSuccess)
     };
 
+};
+
+const followUnfollowFlow = async (dispatch, userId, apiMethod, actionCreator) => {
+    dispatch(followingInProgress(true, userId));
+    let response = await apiMethod(userId);
+    if (response.data.resultCode === 0) {
+        dispatch(actionCreator(userId));
+        dispatch(followingInProgress(false, userId));
+    }
 };
 
 

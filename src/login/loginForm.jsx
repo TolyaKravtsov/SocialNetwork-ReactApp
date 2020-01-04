@@ -6,9 +6,9 @@ import TextareaForm from "../common/formsControl/TextareaForm.module.css"
 
 const MaxLength15 = maxLengthCreator(15);
 
-const LoginForm = (props) => {
+const LoginForm = ({handleSubmit,error}) => {
     return (
-        <form onSubmit={props.handleSubmit}>
+        <form onSubmit={handleSubmit}>
             <div>
                 <Field placeholder={"Email"} name={"email"} component={Input} validate={[requiredField, MaxLength15]}/>
             </div>
@@ -20,7 +20,7 @@ const LoginForm = (props) => {
                 <Field type={"checkbox"} name={"rememberMe"} component={Input}
                        validate={[requiredField, MaxLength15]}/> remember me
             </div>
-            {props.error && <div className={TextareaForm.summaryError}>{props.error}</div>}
+            {error && <div className={TextareaForm.summaryError}>{error}</div>}
             <div>
                 <button>Sign Up</button>
             </div>
