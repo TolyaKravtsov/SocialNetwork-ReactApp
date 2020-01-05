@@ -1,4 +1,4 @@
-import {applyMiddleware, combineReducers, createStore} from "redux";
+import {applyMiddleware, combineReducers, compose, createStore} from "redux";
 import profilePageReducer from "./reducer/profilePageReducer";
 import dialogsPageReducer from "./reducer/dialogsPageReducer";
 import findUsersPageReducer from "./reducer/findUsersPageReducer";
@@ -15,8 +15,12 @@ let AllReducers = combineReducers({
     form: formReducer,
     app: appReducer,
 });
+// Расширения Redux для Chrome
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(AllReducers,composeEnhancers(applyMiddleware(thunkMiddleware)));
 
-let store = createStore(AllReducers, applyMiddleware(thunkMiddleware));
+
+/*let store = createStore(AllReducers, applyMiddleware(thunkMiddleware));*/
 
 window.store = store;
 
