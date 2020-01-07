@@ -63,7 +63,7 @@ let Connect = compose(
 
 
 let AppContainer = (props) => {
-    return <Router>
+    return <Router basename={process.env.PUBLIC_URL}>
         <Provider store={store}>
             <Connect/>
         </Provider>
